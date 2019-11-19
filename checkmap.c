@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 00:41:48 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/11/01 17:15:36 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/11/15 19:35:39 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int is_alldigits(char *line)
 	int i;
 
 	i = 0;
+	if (line[i] == '-')
+		i++;
 	while (line[i])
 	{
 		if (ft_isdigit(line[i]) == 0)
@@ -90,7 +92,7 @@ void del_tab(char **tab, char *line)
 	free(line);
 }
 
-int check_value(char **tab)
+int check_tab(char **tab)
 {
 	int i;
 	int n;
@@ -104,48 +106,32 @@ int check_value(char **tab)
 				return (-1);
 		}
 		else
-		{
 			if (is_alldigits(tab[i]) == 0)
 				return (-1);
-		}
 		i++;
 	}
 	return (1);
 }
 
-int check_map(int fd, t_map_len *size)
+int check_map(int fd, t_mapsize *size)
 {
-	char **map;
-	char *line;
-	int n;
-
-	size->y_len = 0;
-	n = -1;
+	char	**tab;
+	char	*line;
+	
+	size->y = 0;
+	size->x = -1;
 	while (get_next_line(fd, &line) > 0)
 	{
-		map = ft_strsplit(line, ' ');
-		if (n == -1)
-			n = tab_len(map);
-		if (n != tab_len(map) || check_value(map) == -1)
+		tab = ft_strsplit(line, ' ');
+		if (size->x == -1)
+			size->x = tab_len(tab);
+		if (size->x != tab_len(tab) || check_tab(tab) == -1)
 		{
-			del_tab(map, line);
+			del_tab(tab, line);
 			return (-1);
 		}
-		size->y_len++;
-		del_tab(map, line);
+		size->y++;
+		del_tab(tab, line);
 	}
-	size->x_len = n;
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-

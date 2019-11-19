@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:56:43 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/11/01 17:34:15 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/11/18 01:00:46 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@ int hex_to_decimal(char *str)
 	return (res);
 }
 
-t_pixel new_pixel(int z, int color)
+t_pixel new_pixel(int z, int color, int y, int x)
 {
 	t_pixel new;
 
+	new.y = y;
+	new.x = x;
 	new.z = z;
 	new.color = color;
 	return (new);	
 }
 
-t_pixel get_z_color(char *tab, int n)
+t_pixel get_z_color(char *tab, int n, int y, int x)
 {
 	int z;
 	int color;
@@ -49,45 +51,50 @@ t_pixel get_z_color(char *tab, int n)
 	z = ft_atoi(tab);
 	color = hex_to_decimal(tab + (n + 3));
 	
-	return (new_pixel(z, color));
+	return (new_pixel(z, color, y, x));
 }
 
-t_pixel filter(char *tab)
+t_pixel filter(char *tab, int y, int x)
 {
 	t_pixel pixel;
 	int n;
 
 	if ((n = is_color(tab)) != -1)
-		pixel = get_z_color(tab, n);
+		pixel = get_z_color(tab, n, y, x);
 	else
-		pixel = new_pixel(ft_atoi(tab), 0);
+		pixel = new_pixel(ft_atoi(tab), 0xFFFFFF, y, x);
 	return (pixel);	
 }
 
-
-t_pixel **get_map(int fd, t_map_len size)
+t_pixel **get_map(int fd, t_mapsize size)
 {
 	t_pixel **map;
 	char **tab;
 	char *line;
-	int i;
-	int j;
+	int y;
+	int x;
+	int dx;
 
-	i = 0;
-	if (!(map = (t_pixel **)malloc(sizeof(t_pixel *) * size.y_len)))
+	int dy;
+
+	y = 0;
+	if (!(map = (t_pixel **)malloc(sizeof(t_pixel *) * size.y)))
 		return (NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab = ft_strsplit(line, ' ');
-		if (!(map[i] = (t_pixel *)malloc(sizeof(t_pixel) * size.x_len)))
+		if (!(map[y] = (t_pixel *)malloc(sizeof(t_pixel) * size.x)))
 			return (NULL);
-		j = 0;
-		while (tab[j])
+		x = 0;
+		dy = (0.8 * 800) / (size.y - 1);
+		while (tab[x])
 		{
-			map[i][j] = filter(tab[j]);	
-			j++;
+			dx = (0.8 * 800) / (size.x - 1);
+			map[y][x] = filter(tab[x], (dy * y) + ((0.2 * 800) / 2), (dx * x) + ((0.2 * 800) / 2));	
+			x++;
 		}
-		i++;
+		del_tab(tab, line);
+		y++;
 	}
 	return (map);
 }
