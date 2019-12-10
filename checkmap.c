@@ -6,13 +6,13 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 00:41:48 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/11/15 19:35:39 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:27:02 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int is_color(char *line)
+int		is_color(char *line)
 {
 	int i;
 
@@ -26,7 +26,7 @@ int is_color(char *line)
 	return (-1);
 }
 
-int is_alldigits(char *line)
+int		is_alldigits(char *line)
 {
 	int i;
 
@@ -42,15 +42,15 @@ int is_alldigits(char *line)
 	return (1);
 }
 
-int color_format(char *line, int p)
+int		color_format(char *line, int p)
 {
 	int i;
 
 	i = 0;
-	if ((p == 0) || (line[p + 1] != '0') || (line[p + 2] != 'x') || 
+	if ((p == 0) || (line[p + 1] != '0') || (line[p + 2] != 'x') ||
 			(ft_strlen(line + p) != 9))
 		return (-1);
-	while(i < p)
+	while (i < p)
 	{
 		if (ft_isdigit(line[i]) == 0)
 			return (-1);
@@ -68,7 +68,7 @@ int color_format(char *line, int p)
 	return (1);
 }
 
-int tab_len(char **tab)
+int		tab_len(char **tab)
 {
 	int i;
 
@@ -78,7 +78,7 @@ int tab_len(char **tab)
 	return (i);
 }
 
-void del_tab(char **tab, char *line)
+void	del_tab(char **tab, char *line)
 {
 	int i;
 
@@ -92,7 +92,7 @@ void del_tab(char **tab, char *line)
 	free(line);
 }
 
-int check_tab(char **tab)
+int		check_tab(char **tab)
 {
 	int i;
 	int n;
@@ -106,18 +106,22 @@ int check_tab(char **tab)
 				return (-1);
 		}
 		else
+		{
 			if (is_alldigits(tab[i]) == 0)
 				return (-1);
+		}
 		i++;
 	}
 	return (1);
 }
 
-int check_map(int fd, t_mapsize *size)
+int		check_map(int fd, t_mapsize *size)
 {
 	char	**tab;
 	char	*line;
-	
+
+	if (read(fd, 0, 0) < 0)
+		return (-1);
 	size->y = 0;
 	size->x = -1;
 	while (get_next_line(fd, &line) > 0)
