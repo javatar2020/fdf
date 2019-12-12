@@ -6,13 +6,13 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:52:50 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/10 21:49:40 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 22:41:25 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	del_map(t_pixel **map, t_mapsize size)
+void		del_map(t_pixel **map, t_mapsize size)
 {
 	int y;
 
@@ -23,6 +23,14 @@ void	del_map(t_pixel **map, t_mapsize size)
 		y++;
 	}
 	free(map);
+}
+
+void	exit_error(int fd, int status, char *msg)
+{
+	if (fd == -1)
+		close(fd);
+	ft_putendl(msg);
+	exit(status);
 }
 
 void	init(t_pixel **map, t_mapsize size)
@@ -51,18 +59,10 @@ int		main(int argc, char **argv)
 	t_pixel		**map;
 	t_mapsize	size;
 
-	if (argc < 2)
-		return (0);
+	if (argc != 2)
+		exit_error(-1, EXIT_FAILURE, "Arguments error");
 	fd = open(argv[1], O_RDONLY);
-	if (check_map(fd, &size) == -1)
-	{
-		ft_putendl("map is not valide");
-		close(fd);
-		return (0);
-	}
-	else
-		ft_putendl("map is valide");
-	close(fd);
+	check_map(fd, &size);
 	fd = open(argv[1], O_RDONLY);
 	map = get_map(fd, size);
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:22:28 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/10 21:50:58 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:25:58 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ void	zoom(t_map data, int yy, int xx)
 int		key_press(int keycode, t_map *data)
 {
 	if (keycode == 53)
-	{
-		del_map(data->map, data->size);
 		exit(1);
-	}
 	else if (keycode == 34 && data->mode != ISO && (data->mode = ISO))
 		zoom(*data, data->map[0][0].y, data->map[0][0].x);
 	else if (keycode == 35 && data->mode != PARALLEL && (data->mode = PARALLEL))

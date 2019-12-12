@@ -6,14 +6,14 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 22:22:45 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/09 20:55:39 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 22:33:32 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "./GNL/get_next_line.h"
+# include "./lib/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -49,13 +49,14 @@ typedef struct 	s_map
 	int			z;
 }				t_map;
 
+void			exit_error(int fd, int status, char *msg);
 void 			bresenham(t_pixel start, t_pixel end, void *mlx_ptr, void *mlx_win);
 int 			key_press(int keycode, t_map *param);
 int				mouse_press(int button, int x, int y, t_map *param);
 int 			mouse_move(int x, int y, t_map *param);
 int 			mouse_release(int button, int x, int y, t_map *param);
 void 			draw(t_map data);
-int				check_map(int fd, t_mapsize *size);
+void			check_map(int fd, t_mapsize *size);
 int				is_color(char *line);
 int 			tab_len(char **tab);
 void 			del_tab(char **tab, char *line);

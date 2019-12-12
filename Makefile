@@ -6,7 +6,7 @@
 #    By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 15:58:57 by kkhabour          #+#    #+#              #
-#    Updated: 2019/12/10 22:29:38 by kkhabour         ###   ########.fr        #
+#    Updated: 2019/12/11 22:56:08 by kkhabour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ all: $(NAME)
 
 $(NAME):
 	make -C ./lib/libft/
-	mv ./GNL/libft/libft.a .
+	mv ./lib/libft/libft.a .
 	gcc $(FLAGS) -L. -lmlx -framework OpenGL -framework Appkit $(SRC) libft.a -o $(NAME)
 clean:
-	make -C ./GNL/libft clean
+	make -C ./lib/libft clean
 	rm -rf  libft.a
 
 fclean: clean
-	make -C ./GNL/libft fclean
+	make -C ./lib/libft fclean
 	rm -rf $(NAME) fdf.dSYM
 
 re : fclean all

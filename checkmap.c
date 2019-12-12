@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 00:41:48 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/10 18:27:02 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 22:33:19 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ int		check_tab(char **tab)
 	return (1);
 }
 
-int		check_map(int fd, t_mapsize *size)
+void	check_map(int fd, t_mapsize *size)
 {
 	char	**tab;
 	char	*line;
-
+	
 	if (read(fd, 0, 0) < 0)
-		return (-1);
+		exit_error(fd, EXIT_FAILURE, "file error");
 	size->y = 0;
 	size->x = -1;
 	while (get_next_line(fd, &line) > 0)
@@ -132,10 +132,12 @@ int		check_map(int fd, t_mapsize *size)
 		if (size->x != tab_len(tab) || check_tab(tab) == -1)
 		{
 			del_tab(tab, line);
-			return (-1);
+			exit_error(fd, EXIT_FAILURE, "Map is not valid");
 		}
 		size->y++;
 		del_tab(tab, line);
 	}
-	return (1);
+	if (size->x == -1)
+		exit_error(fd, EXIT_FAILURE, "no data found");
+	close(fd);
 }
