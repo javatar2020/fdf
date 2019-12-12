@@ -6,12 +6,12 @@
 #    By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 15:58:57 by kkhabour          #+#    #+#              #
-#    Updated: 2019/12/11 22:56:08 by kkhabour         ###   ########.fr        #
+#    Updated: 2019/12/12 23:21:09 by kkhabour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fdf
-SRC=main.c checkmap.c ./lib/get_next_line.c storage.c draw.c event.c
+SRC=main.c checkmap.c ./lib/get_next_line.c storage.c draw.c event.c errors.c
 FLAGS= -Wall -Wextra -Werror
 
 

@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 00:41:48 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 22:33:19 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:18:10 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,6 @@ int		color_format(char *line, int p)
 	return (1);
 }
 
-int		tab_len(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
-
-void	del_tab(char **tab, char *line)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	free(line);
-}
-
 int		check_tab(char **tab)
 {
 	int i;
@@ -119,7 +95,7 @@ void	check_map(int fd, t_mapsize *size)
 {
 	char	**tab;
 	char	*line;
-	
+
 	if (read(fd, 0, 0) < 0)
 		exit_error(fd, EXIT_FAILURE, "file error");
 	size->y = 0;

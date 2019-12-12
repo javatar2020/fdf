@@ -6,32 +6,11 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:52:50 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 22:41:25 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:19:21 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void		del_map(t_pixel **map, t_mapsize size)
-{
-	int y;
-
-	y = 0;
-	while (y < size.y)
-	{
-		free(map[y]);
-		y++;
-	}
-	free(map);
-}
-
-void	exit_error(int fd, int status, char *msg)
-{
-	if (fd == -1)
-		close(fd);
-	ft_putendl(msg);
-	exit(status);
-}
 
 void	init(t_pixel **map, t_mapsize size)
 {
