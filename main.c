@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:52:50 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 23:19:21 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/13 23:15:07 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	init(t_pixel **map, t_mapsize size)
 	t_map	data;
 
 	data.mlx_ptr = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx_ptr, 800, 800, "fdf");
+	data.mlx_win = mlx_new_window(data.mlx_ptr, HEIGHT, WIDTH, "fdf");
 	data.map = map;
 	data.size = size;
 	data.is_pressed = 0;
 	data.rotation = 0.523599;
 	data.z = 1;
-	data.zoom = (0.4 * 800) / data.size.x;
+	data.zoom = (0.4 * WIDTH) / data.size.x;
 	mlx_hook(data.mlx_win, 2, 0, key_press, (void *)&data);
 	mlx_hook(data.mlx_win, 4, 0, mouse_press, (void *)&data);
 	mlx_hook(data.mlx_win, 5, 0, mouse_release, (void *)&data);

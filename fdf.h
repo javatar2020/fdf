@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 22:22:45 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 22:33:32 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/13 23:17:08 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 # include <mlx.h>
 
+# define HEIGHT 1000
+# define WIDTH 1000
 # define ISO 34
 # define PARALLEL 35
 
@@ -35,6 +37,16 @@ typedef struct 	s_pixel
 	int			z;
 	int 		color;
 }				t_pixel;
+
+typedef struct 	s_bresenham
+{
+	int			dx;
+	int			sx;
+	int 		dy;
+	int 		sy;
+	int			err;
+	int			e2;
+}				t_bresenham;
 
 typedef struct 	s_map
 {

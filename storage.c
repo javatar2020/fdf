@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:56:43 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/10 19:03:00 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/13 23:15:35 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ t_pixel		**get_map(int fd, t_mapsize size)
 		x = 0;
 		while (tab[x])
 		{
-			map[y][x] = filter(tab[x], y * ((0.4 * 800) / size.x),
-					x * ((0.4 * 800) / size.x));
+			map[y][x] = filter(tab[x], y * ((0.4 * WIDTH) / size.x),
+					x * ((0.4 * WIDTH) / size.x));
 			x++;
 		}
 		del_tab(tab, line);

@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 00:33:51 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/10 18:59:34 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/13 23:13:56 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,28 @@
 
 void	bresenham(t_pixel start, t_pixel end, void *mlx_ptr, void *mlx_win)
 {
-	int dx;
-	int sx;
-	int dy;
-	int sy;
-	int err;
-	int e2;
+	t_bresenham data;
 
-	dx = abs(end.x - start.x);
-	sx = start.x < end.x ? 1 : -1;
-	dy = abs(end.y - start.y);
-	sy = start.y < end.y ? 1 : -1;
-	err = (dx > dy ? dx : -dy) / 2;
+	data.dx = abs(end.x - start.x);
+	data.sx = start.x < end.x ? 1 : -1;
+	data.dy = abs(end.y - start.y);
+	data.sy = start.y < end.y ? 1 : -1;
+	data.err = (data.dx > data.dy ? data.dx : -data.dy) / 2;
 	while (1)
 	{
 		mlx_pixel_put(mlx_ptr, mlx_win, start.x, start.y, start.color);
 		if (start.x == end.x && start.y == end.y)
 			break ;
-		e2 = err;
-		if (e2 > -dx)
+		data.e2 = data.err;
+		if (data.e2 > -data.dx)
 		{
-			err -= dy;
-			start.x += sx;
+			data.err -= data.dy;
+			start.x += data.sx;
 		}
-		if (e2 < dy)
+		if (data.e2 < data.dy)
 		{
-			err += dx;
-			start.y += sy;
+			data.err += data.dx;
+			start.y += data.sy;
 		}
 	}
 }
