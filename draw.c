@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 00:33:51 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/13 23:13:56 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/13 23:49:32 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	draw(t_map data)
 	int x;
 
 	mlx_clear_window(data.mlx_ptr, data.mlx_win);
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 10, 0xFFFFFF, "p = Parallel");
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 30, 0xFFFFFF, "i = ISO");
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 50, 0xFFFFFF, "+ = Increment z");
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 70, 0xFFFFFF, "- = Decrement z");
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 90, 0xFFFFFF, "zoom in = mouse scrol up");
+	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 110, 0xFFFFFF, "zoom out = mouse scrol down");
 	y = 0;
 	while (y < data.size.y)
 	{
