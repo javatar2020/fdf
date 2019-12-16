@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 00:33:51 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/14 00:10:58 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:33:06 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,27 @@ void	bresenham(t_pixel start, t_pixel end, void *mlx_ptr, void *mlx_win)
 	}
 }
 
+void	add_menu(void *mlx_ptr, void *mlx_win)
+{
+	mlx_string_put(mlx_ptr, mlx_win, 10, 10, 0xFFFFFF, "p : Parallel mode");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 30, 0xFFFFFF, "i : Iso mode");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 50, 0xFFFFFF, "+ : increment z value");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 70, 0xFFFFFF, "- : decrement z value");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 90, 0xFFFFFF, "scroll up : zoom in");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 110,
+			0xFFFFFF, "scroll down : zoom out");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 130, 0xFFFFFF, "Arrows keys: Move shape");
+}
+
 void	draw(t_map data)
 {
 	int y;
 	int x;
 
 	mlx_clear_window(data.mlx_ptr, data.mlx_win);
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 10, 0xFFFFFF, "p");
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 30, 0xFFFFFF, "i");
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 50, 0xFFFFFF, "+");
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 70, 0xFFFFFF, "-");
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 90, 0xFFFFFF, "up");
-	mlx_string_put(data.mlx_ptr, data.mlx_win, 10, 110, 0xFFFFFF, "down");
-	y = -1;
-	while (++y < data.size.y)
+	add_menu(data.mlx_ptr, data.mlx_win);
+	y = 0;
+	while (y < data.size.y)
 	{
 		x = 0;
 		while (x < data.size.x)
@@ -66,5 +73,6 @@ void	draw(t_map data)
 						data.mlx_ptr, data.mlx_win);
 			x++;
 		}
+		y++;
 	}
 }

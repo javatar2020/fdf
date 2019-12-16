@@ -6,16 +6,15 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 22:22:45 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/13 23:19:28 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:09:45 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "./lib/get_next_line.h"
+# include "./libft/get_next_line.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <math.h>
 # include <mlx.h>
 

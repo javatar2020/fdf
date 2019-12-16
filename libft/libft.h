@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:15:43 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/04/19 20:16:44 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:07:45 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

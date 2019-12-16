@@ -3,33 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 15:58:57 by kkhabour          #+#    #+#              #
-#    Updated: 2019/12/12 23:21:09 by kkhabour         ###   ########.fr        #
+#    Updated: 2019/12/16 20:11:06 by kkhabour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fdf
-SRC=main.c checkmap.c ./lib/get_next_line.c storage.c draw.c event.c errors.c
-FLAGS= -Wall -Wextra -Werror
-
+SRCS=main.c checkmap.c storage.c draw.c event.c errors.c
+OBJS=$(SRCS:.c=.o)
+CC=gcc
+CFLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
+$(NAME): $(OBJS)
+	make -C libft
+	$(CC) $(FLAGS) -L. -lmlx -framework OpenGL -framework Appkit $(OBJS) ./libft/libft.a -o $(NAME)
 
-$(NAME):
-	make -C ./lib/libft/
-	mv ./lib/libft/libft.a .
-	gcc $(FLAGS) -L. -lmlx -framework OpenGL -framework Appkit $(SRC) libft.a -o $(NAME)
+$(OBJS): %.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	make -C ./lib/libft clean
-	rm -rf  libft.a
+	make -C libft clean
+	rm -f $(OBJS)
 
 fclean: clean
-	make -C ./lib/libft fclean
-	rm -rf $(NAME) fdf.dSYM
+	make -C ./libft fclean
+	rm -rf $(NAME)
 
 re : fclean all
 
 norme:
-	norminette *.c
+	norminette -R CheckForbiddenSourceHeader $(SRCS)
