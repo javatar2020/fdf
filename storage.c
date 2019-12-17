@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   storage.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:56:43 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/13 23:55:48 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/16 22:01:33 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ t_pixel		new_pixel(int z, int color, int y, int x)
 {
 	t_pixel new;
 
-	new.y = y;
-	new.x = x;
+	new.y = y + 350;
+	new.x = x + 350;
 	new.z = z;
-	new.color = color;
+	if (z != 0 && color == 0)
+		new.color = 0xff0800;
+	else
+		new.color = color;
 	return (new);
 }
 

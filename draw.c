@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 00:33:51 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/16 20:33:06 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/17 18:55:08 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	add_menu(void *mlx_ptr, void *mlx_win)
 	mlx_string_put(mlx_ptr, mlx_win, 10, 90, 0xFFFFFF, "scroll up : zoom in");
 	mlx_string_put(mlx_ptr, mlx_win, 10, 110,
 			0xFFFFFF, "scroll down : zoom out");
-	mlx_string_put(mlx_ptr, mlx_win, 10, 130, 0xFFFFFF, "Arrows keys: Move shape");
+	mlx_string_put(mlx_ptr, mlx_win, 10, 130,
+			0xFFFFFF, "Arrow keys: Move shape");
 }
 
 void	draw(t_map data)

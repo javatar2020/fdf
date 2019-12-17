@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:22:28 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 20:25:58 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/17 19:17:26 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ int		mouse_press(int button, int x, int y, t_map *data)
 int		mouse_move(int x, int y, t_map *data)
 {
 	if (data->is_pressed == 1)
-	{
 		zoom(*data, y, x);
-	}
 	return (1);
 }
 
