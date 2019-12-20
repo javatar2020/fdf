@@ -6,11 +6,17 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 01:52:50 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/16 20:25:35 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/20 21:39:05 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	usage(void)
+{
+	ft_putendl("usage: ./fdf <map>");
+	exit(EXIT_FAILURE);
+}
 
 void	init(t_pixel **map, t_mapsize size)
 {
@@ -39,7 +45,7 @@ int		main(int argc, char **argv)
 	t_mapsize	size;
 
 	if (argc != 2)
-		exit_error(-1, EXIT_FAILURE, "Arguments error");
+		usage();
 	fd = open(argv[1], O_RDONLY);
 	check_map(fd, &size);
 	fd = open(argv[1], O_RDONLY);

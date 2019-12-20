@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:22:28 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/17 19:55:13 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/20 21:59:23 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	zoom(t_map data, int yy, int xx)
 int		key_press(int keycode, t_map *data)
 {
 	if (keycode == 53)
+	{
+		mlx_destroy_window(data.mlx_ptr, data.mlx_win);
 		exit(1);
+	}
 	else if (keycode == 34 && data->mode != ISO && (data->mode = ISO))
 		zoom(*data, data->map[0][0].y, data->map[0][0].x);
 	else if (keycode == 35 && data->mode != PARALLEL && (data->mode = PARALLEL))
