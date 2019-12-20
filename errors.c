@@ -6,7 +6,7 @@
 /*   By: kkhabour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 23:14:36 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/12 23:21:47 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/20 23:28:46 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ void	del_map(t_pixel **map, t_mapsize size)
 		y++;
 	}
 	free(map);
+}
+
+void	destroy(t_map *data)
+{
+	del_map(data->map, data->size);
+	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	exit(EXIT_SUCCESS);
 }
 
 void	exit_error(int fd, int status, char *msg)

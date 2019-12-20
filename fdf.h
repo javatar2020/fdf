@@ -6,7 +6,7 @@
 /*   By: kkhabour <kkhabour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 22:22:45 by kkhabour          #+#    #+#             */
-/*   Updated: 2019/12/16 21:58:56 by kkhabour         ###   ########.fr       */
+/*   Updated: 2019/12/20 23:28:25 by kkhabour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int				is_color(char *line);
 int 			tab_len(char **tab);
 void 			del_tab(char **tab, char *line);
 void			del_map(t_pixel **map, t_mapsize size);
+void			destroy(t_map *data);
 t_pixel 		**get_map(int fd, t_mapsize size);
 
 #endif
